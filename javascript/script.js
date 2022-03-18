@@ -11,6 +11,7 @@ function generatorRandomNumber(min, max) {
 }
 
 function creationAndDisplayNumbers() {
+    buttonPlay.classList.toggle("pe-none");
     let arrayNumbers = [];
     for (let i = 0; i < numeberToGenerate; i++) {
         let numbers = generatorRandomNumber(1, 50);
@@ -20,7 +21,7 @@ function creationAndDisplayNumbers() {
         arrayNumbers.push(numbers);
     }
     console.log(arrayNumbers);
-    numbersOnHtml.innerText = arrayNumbers;
+    numbersOnHtml.innerText = arrayNumbers.join(' ~ ');
     return arrayNumbers;
 }
 
@@ -34,22 +35,33 @@ function request(array) {
     console.log(arrayNumbers);
     arrayUser = [];
     for (let i = 0; i < numeberToGenerate; i++) {
-        userInputNumber = parseInt(prompt("Inserisci uno per volta i numeri visti in precedenza"));
-        if (arrayNumbers.includes(userInputNumber)) {
+
+        do {
+            userInputNumber = parseInt(prompt(`${i + 1}ᴬ Scelta - Inserisci uno per volta i numeri visti in precedenza`));
+        } while (isNaN(userInputNumber) || !userInputNumber);
+        if (arrayNumbers.includes(userInputNumber) && !arrayUser.includes(userInputNumber)) {
             arrayUser.push(userInputNumber);
         }
 
     }
     console.log(arrayUser);
-    if (arrayUser.length === 5) {
-        numbersOnHtml.innerText = `Hai indovinato tutti i numeri ${arrayUser}`;
-    } else {
-        numbersOnHtml.innerText = `Ritenta hai indovinato ${arrayUser.length} ovvero: ${arrayUser}`;
-    }
 
+    switch (arrayUser.length) {
+        case 0:
+            numbersOnHtml.innerText = `Ritenta non hai indovinato nessun numero`;
+            break;
+        case 1:
+            numbersOnHtml.innerText = `Ritenta hai indovinato ${arrayUser.length} solo numero ovvero il: ${arrayUser.join(' ~ ')}`;
+            break;
+        case 5:
+            numbersOnHtml.innerText = `Hai indovinato tutti i numeri ovvero: ${arrayUser.join(' ~ ')}`;
+            break;
+        default:
+            numbersOnHtml.innerText = `Ritenta hai indovinato ${arrayUser.length} numeri ovvero: ${arrayUser.join(' ~ ')}`;
+    }
+    buttonPlay.classList.toggle("pe-none");
 
 }
-
 // ~~~~~~~~~~ END FUNCTIONS ~~~~~~~~~~
 
 const buttonPlay = document.getElementById("button-start");
