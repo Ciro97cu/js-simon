@@ -29,6 +29,8 @@ h1 {
     text-shadow: 0 0 10px palegreen;
 }
 
-h3 {
+h3, #my_numbers {
     color: green;
+    font-weight: 500;
 }
+

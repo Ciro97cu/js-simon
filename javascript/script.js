@@ -10,11 +10,42 @@ function generatorRandomNumber(min, max) {
     return Math.floor(Math.random() * range) + min;
 }
 
+// function creationAndDisplayNumbers() {
+
+// }
+
+function timer() {
+    counter += 1;
+    console.log(counter);
+}
+
 // ~~~~~~~~~~ END FUNCTIONS ~~~~~~~~~~
 
-
-
 const buttonPlay = document.getElementById("button-start");
+const numbersOnHtml = document.getElementById("my_numbers");
+let arrayNumbers = [];
+const numeberToGenerate = 5;
+let counter = 0;
 
 buttonPlay.addEventListener("click", () => {
+
+    let arrayNumbers = [];
+
+    for (let i = 0; i < numeberToGenerate; i++) {
+        let numbers = generatorRandomNumber(1, 50);
+        while (arrayNumbers.includes(numbers)) {
+            numbers = generatorRandomNumber(1, 50);
+        }
+        arrayNumbers.push(numbers);
+    }
+    console.log(arrayNumbers);
+    numbersOnHtml.innerText = arrayNumbers;
+
+
+
 })
+
+let clock = setInterval(timer, 1000);
+if (counter === 10) {
+    clearInterval(clock);
+}
