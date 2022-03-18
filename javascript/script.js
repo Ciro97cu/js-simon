@@ -25,11 +25,26 @@ function creationAndDisplayNumbers() {
 
 function displayNone() {
     numbersOnHtml.innerText = "Ora inserisci i numeri che hai visto";
+    console.log(arrayNumbers);
     setTimeout(request, 1000);
 }
 
 function request() {
-    userInputNumber = parseInt(prompt("Inserisci uno per volta i numeri visti in precedenza"));
+    for (let i = 0; i < numeberToGenerate; i++) {
+        userInputNumber = parseInt(prompt("Inserisci uno per volta i numeri visti in precedenza"));
+        arrayuserInputNumbers.push(userInputNumber);
+    }
+    console.log(arrayuserInputNumbers);
+    let firstArray = arrayNumbers.join("");
+    let secondArray = arrayuserInputNumbers.join("");
+    console.log(firstArray);
+    console.log(secondArray);
+    if (firstArray === secondArray) {
+        console.log("Hai vinto");
+    } else {
+        console.log("Non hai vinto");
+    }
+
 }
 
 // ~~~~~~~~~~ END FUNCTIONS ~~~~~~~~~~
@@ -39,6 +54,7 @@ const numbersOnHtml = document.getElementById("my_numbers");
 let arrayNumbers = [];
 const numeberToGenerate = 5;
 let userInputNumber;
+let arrayuserInputNumbers = [];
 
 buttonPlay.addEventListener("click", () => {
 
@@ -46,3 +62,21 @@ buttonPlay.addEventListener("click", () => {
     setTimeout(displayNone, 5000);
 
 })
+
+
+/*
+let a = [1, 2, 3];
+let b = [1, 2, 3];
+
+let ac = a.join("");
+let bd = b.join("");
+
+console.log(ac);
+console.log(bd);
+
+if (ac === bd) {
+    console.log("ok");
+} else {
+    console.log("no");
+}
+*/
