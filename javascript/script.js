@@ -57,15 +57,19 @@ function feedback(arrayUser) {
 
     switch (arrayUser.length) {
         case 0:
+            numbersOnHtml.classList.toggle("text-danger");
             numbersOnHtml.innerText = `Ritenta non hai indovinato nessun numero`;
             break;
         case 1:
+            numbersOnHtml.classList.toggle("text-danger");
             numbersOnHtml.innerText = `Ritenta hai indovinato ${arrayUser.length} solo numero ovvero il: ${arrayUser.join(' ~ ')}`;
             break;
         case 5:
+            numbersOnHtml.classList.toggle("text-primary");
             numbersOnHtml.innerText = `Hai indovinato tutti i numeri ovvero: ${arrayUser.join(' ~ ')}`;
             break;
         default:
+            numbersOnHtml.classList.toggle("text-danger");
             numbersOnHtml.innerText = `Ritenta hai indovinato ${arrayUser.length} numeri ovvero: ${arrayUser.join(' ~ ')}`;
     }
 
@@ -74,9 +78,22 @@ function feedback(arrayUser) {
 function clock() {
     counter--;
     countDownOnHtml.innerText = `${counter} s`;
+    if (counter <= 7) {
+        countDownOnHtml.classList.add("text-danger")
+    } else if (counter <= 15) {
+        countDownOnHtml.classList.add("text-warning")
+    }
     if (counter === 0) {
         clearInterval(countDown);
     }
+}
+
+function variousReset() {
+    numbersOnHtml.classList.remove("text-danger");
+    numbersOnHtml.classList.remove("text-primary");
+    countDownOnHtml.classList.remove("text-warning")
+    countDownOnHtml.classList.remove("text-danger")
+    counter = 30;
 }
 
 // ~~~~~~~~~~ END FUNCTIONS ~~~~~~~~~~
@@ -92,7 +109,7 @@ let counter = 30;
 let countDown;
 
 buttonPlay.addEventListener("click", () => {
-    counter = 30;
+    variousReset();
     countDownOnHtml.innerText = `${counter} s`;
     const returnArray = creationAndDisplayNumbers();
     countDown = setInterval(clock, 1000);

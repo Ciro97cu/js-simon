@@ -34,7 +34,11 @@ h1 {
     font-size: 18px;
 }
 
+
 h3, #my_numbers, #my_counter {
     color: green;
-    font-weight: 500;
+}
+
+#my_numbers, #my_counter{
+    font-weight: 900;
 }
