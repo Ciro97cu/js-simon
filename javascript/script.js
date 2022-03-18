@@ -31,6 +31,7 @@ function displayNone(array) {
 }
 
 function request(array) {
+
     arrayNumbers = array;
     console.log(arrayNumbers);
     arrayUser = [];
@@ -46,6 +47,14 @@ function request(array) {
     }
     console.log(arrayUser);
 
+    feedback(arrayUser);
+
+    buttonPlay.classList.toggle("pe-none");
+
+}
+
+function feedback(arrayUser) {
+
     switch (arrayUser.length) {
         case 0:
             numbersOnHtml.innerText = `Ritenta non hai indovinato nessun numero`;
@@ -59,21 +68,33 @@ function request(array) {
         default:
             numbersOnHtml.innerText = `Ritenta hai indovinato ${arrayUser.length} numeri ovvero: ${arrayUser.join(' ~ ')}`;
     }
-    buttonPlay.classList.toggle("pe-none");
 
 }
+
+function clock() {
+    counter--;
+    countDownOnHtml.innerText = `${counter} s`;
+    if (counter === 0) {
+        clearInterval(countDown);
+    }
+}
+
 // ~~~~~~~~~~ END FUNCTIONS ~~~~~~~~~~
 
 const buttonPlay = document.getElementById("button-start");
 const numbersOnHtml = document.getElementById("my_numbers");
+const countDownOnHtml = document.getElementById("my_counter");
 let arrayNumbers = [];
 const numeberToGenerate = 5;
 let userInputNumber;
 let arrayUser = [];
+let counter = 30;
+let countDown;
 
 buttonPlay.addEventListener("click", () => {
 
     const returnArray = creationAndDisplayNumbers();
-    setTimeout(displayNone, 5000, returnArray);
+    countDown = setInterval(clock, 1000);
+    setTimeout(displayNone, 30000, returnArray);
 
 })

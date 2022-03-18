@@ -29,7 +29,7 @@ h1 {
     text-shadow: 0 0 20px palegreen;
 }
 
-h3, #my_numbers {
+h3, #my_numbers, #my_counter {
     color: green;
     font-weight: 500;
 }
