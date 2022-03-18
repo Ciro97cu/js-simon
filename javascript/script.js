@@ -10,27 +10,8 @@ function generatorRandomNumber(min, max) {
     return Math.floor(Math.random() * range) + min;
 }
 
-// function creationAndDisplayNumbers() {
-
-// }
-
-function timer() {
-    counter += 1;
-    console.log(counter);
-}
-
-// ~~~~~~~~~~ END FUNCTIONS ~~~~~~~~~~
-
-const buttonPlay = document.getElementById("button-start");
-const numbersOnHtml = document.getElementById("my_numbers");
-let arrayNumbers = [];
-const numeberToGenerate = 5;
-let counter = 0;
-
-buttonPlay.addEventListener("click", () => {
-
+function creationAndDisplayNumbers() {
     let arrayNumbers = [];
-
     for (let i = 0; i < numeberToGenerate; i++) {
         let numbers = generatorRandomNumber(1, 50);
         while (arrayNumbers.includes(numbers)) {
@@ -40,12 +21,28 @@ buttonPlay.addEventListener("click", () => {
     }
     console.log(arrayNumbers);
     numbersOnHtml.innerText = arrayNumbers;
+}
 
+function displayNone() {
+    numbersOnHtml.innerText = "Ora inserisci i numeri che hai visto";
+    setTimeout(request, 1000);
+}
 
+function request() {
+    userInputNumber = parseInt(prompt("Inserisci uno per volta i numeri visti in precedenza"));
+}
+
+// ~~~~~~~~~~ END FUNCTIONS ~~~~~~~~~~
+
+const buttonPlay = document.getElementById("button-start");
+const numbersOnHtml = document.getElementById("my_numbers");
+let arrayNumbers = [];
+const numeberToGenerate = 5;
+let userInputNumber;
+
+buttonPlay.addEventListener("click", () => {
+
+    creationAndDisplayNumbers();
+    setTimeout(displayNone, 5000);
 
 })
-
-let clock = setInterval(timer, 1000);
-if (counter === 10) {
-    clearInterval(clock);
-}
