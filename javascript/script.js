@@ -92,7 +92,8 @@ let counter = 30;
 let countDown;
 
 buttonPlay.addEventListener("click", () => {
-
+    counter = 30;
+    countDownOnHtml.innerText = `${counter} s`;
     const returnArray = creationAndDisplayNumbers();
     countDown = setInterval(clock, 1000);
     setTimeout(displayNone, 30000, returnArray);

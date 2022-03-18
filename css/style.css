@@ -5,6 +5,7 @@ h1,h2,h3,h4,h5,h6,p {
 
 .numbers_window {
     background-color: palegreen;
+    border: 2px solid white;
 }
 
 button {
@@ -27,6 +28,10 @@ h1 {
     color: green;
     font-weight: 900;
     text-shadow: 0 0 20px palegreen;
+}
+
+#my_numbers, #my_counter {
+    font-size: 18px;
 }
 
 h3, #my_numbers, #my_counter {
