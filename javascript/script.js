@@ -21,29 +21,32 @@ function creationAndDisplayNumbers() {
     }
     console.log(arrayNumbers);
     numbersOnHtml.innerText = arrayNumbers;
+    return arrayNumbers;
 }
 
-function displayNone() {
+function displayNone(array) {
     numbersOnHtml.innerText = "Ora inserisci i numeri che hai visto";
-    console.log(arrayNumbers);
-    setTimeout(request, 1000);
+    setTimeout(request, 1000, array);
 }
 
-function request() {
+function request(array) {
+    arrayNumbers = array;
+    console.log(arrayNumbers);
+    arrayUser = [];
     for (let i = 0; i < numeberToGenerate; i++) {
         userInputNumber = parseInt(prompt("Inserisci uno per volta i numeri visti in precedenza"));
-        arrayuserInputNumbers.push(userInputNumber);
+        if (arrayNumbers.includes(userInputNumber)) {
+            arrayUser.push(userInputNumber);
+        }
+
     }
-    console.log(arrayuserInputNumbers);
-    let firstArray = arrayNumbers.join("");
-    let secondArray = arrayuserInputNumbers.join("");
-    console.log(firstArray);
-    console.log(secondArray);
-    if (firstArray === secondArray) {
-        console.log("Hai vinto");
+    console.log(arrayUser);
+    if (arrayUser.length === 5) {
+        numbersOnHtml.innerText = `Hai indovinato tutti i numeri ${arrayUser}`;
     } else {
-        console.log("Non hai vinto");
+        numbersOnHtml.innerText = `Ritenta hai indovinato ${arrayUser.length} ovvero: ${arrayUser}`;
     }
+
 
 }
 
@@ -54,29 +57,11 @@ const numbersOnHtml = document.getElementById("my_numbers");
 let arrayNumbers = [];
 const numeberToGenerate = 5;
 let userInputNumber;
-let arrayuserInputNumbers = [];
+let arrayUser = [];
 
 buttonPlay.addEventListener("click", () => {
 
-    creationAndDisplayNumbers();
-    setTimeout(displayNone, 5000);
+    const returnArray = creationAndDisplayNumbers();
+    setTimeout(displayNone, 5000, returnArray);
 
 })
-
-
-/*
-let a = [1, 2, 3];
-let b = [1, 2, 3];
-
-let ac = a.join("");
-let bd = b.join("");
-
-console.log(ac);
-console.log(bd);
-
-if (ac === bd) {
-    console.log("ok");
-} else {
-    console.log("no");
-}
-*/
